@@ -58,7 +58,8 @@ return packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   }) -- Mardown html previewer
-  use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
+  use { "nvim-telescope/telescope.nvim", tag = '0.1.0' }
+  use "preservim/nerdtree" -- File explorer
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

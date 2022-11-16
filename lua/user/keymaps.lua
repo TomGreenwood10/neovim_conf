@@ -11,6 +11,8 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+keymap("n", "<F6>", ":NERDTreeToggle<CR>", opts)
+
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
