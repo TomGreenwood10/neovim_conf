@@ -72,6 +72,7 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+	nvim_lsp = "[LSP]",
       })[entry.source.name]
       return vim_item
     end,
@@ -80,6 +81,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = 'nvim_lsp' }
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -92,4 +94,12 @@ cmp.setup {
     ghost_text = false,
     native_menu = false,
   },
+}
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- The following example advertise capabilities to `clangd`.
+require'lspconfig'.clangd.setup {
+  capabilities = capabilities,
 }
