@@ -69,19 +69,19 @@ cmp.setup {
     format = function(entry, vim_item)
       -- Kind icons
       vim_item.menu = ({
+	nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
-	nvim_lsp = "[LSP]",
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
+    { name = 'nvim_lsp' },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = 'nvim_lsp' }
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
