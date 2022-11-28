@@ -62,6 +62,14 @@ return packer.startup(function(use)
   }) -- Mardown html previewer
   use { "nvim-telescope/telescope.nvim", tag = '0.1.0' }
   use "preservim/nerdtree" -- File explorer
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup({
+      direction = "float",
+      float_opts = {
+	border = "curved",
+      }
+    })
+  end}
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
