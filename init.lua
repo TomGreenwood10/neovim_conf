@@ -7,3 +7,5 @@ require "user.telescope"
 require "user.startup"
 
 vim.cmd "colorscheme catppuccin"
+vim.cmd "set nowrap"
+vim.cmd "hi normal guibg=000000"
