@@ -9,11 +9,10 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-	debug = false,
-	sources = {
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-		formatting.black.with({ extra_args = { "--fast" } }),
-		formatting.stylua,
-    -- diagnostics.flake8
-	},
+    debug = false,
+    sources = {
+	formatting.black,
+	diagnostics.flake8.with({ extra_args = { "--max-line-length", 100 } }),
+-- 	diagnostics.sqlfluff.with({ extra_args = { "--dialect", "mysql" } }),  -- gl doesn't show diagnostics so not suitable for now.
+    },
 })

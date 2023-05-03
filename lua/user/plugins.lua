@@ -87,6 +87,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig"
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
+  use "jose-elias-alvarez/null-ls.nvim" -- hooks up formates (e.g. black) to lsp
 
   use "startup-nvim/startup.nvim"
   
