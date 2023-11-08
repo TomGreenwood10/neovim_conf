@@ -60,14 +60,11 @@ return packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   }) -- Mardown html previewer
-  use { "nvim-telescope/telescope.nvim", tag = '0.1.0' }
+  use { "nvim-telescope/telescope.nvim", tag = '0.1.4' }
   use "preservim/nerdtree" -- File explorer
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup({
-      direction = "float",
-      float_opts = {
-	border = "curved",
-      }
+      direction = "horizontal"
     })
   end}
 
