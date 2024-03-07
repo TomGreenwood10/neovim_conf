@@ -5,6 +5,8 @@ require "user.cmp"
 require "user.lsp"
 require "user.telescope"
 require "user.startup"
+require "user.indent-blankline"
+require "user.treesitter"
 
 vim.cmd "colorscheme catppuccin"
 vim.cmd "set nowrap"

@@ -48,14 +48,18 @@ return packer.startup(function(use)
   use "morhetz/gruvbox" -- colorscheme
   use { "catppuccin/nvim", as = "catppuccon" } -- colorscheme
   use "cocopon/iceberg.vim" -- colorscheme
+  use "lukas-reineke/indent-blankline.nvim"
+
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function()
-	local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-	ts_update()
-    end,
+    run = ":TSUpdate",
   } -- syntax hilighting
+
   use({
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
@@ -87,6 +91,7 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim" -- hooks up formates (e.g. black) to lsp
 
   use "startup-nvim/startup.nvim"
+  use "sindrets/diffview.nvim"  -- git diffs
   
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
