@@ -49,6 +49,7 @@ return packer.startup(function(use)
   use { "catppuccin/nvim", as = "catppuccon" } -- colorscheme
   use "cocopon/iceberg.vim" -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"
+  use "tpope/vim-surround"
 
   use {
     "windwp/nvim-autopairs",
@@ -72,6 +73,8 @@ return packer.startup(function(use)
     })
   end}
 
+  use "Pocco81/true-zen.nvim" -- zen modes
+
   -- cmp pluginsuse {
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
@@ -92,6 +95,8 @@ return packer.startup(function(use)
 
   use "startup-nvim/startup.nvim"
   use "sindrets/diffview.nvim"  -- git diffs
+
+  use "tpope/vim-commentary"  -- commenting
   
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
