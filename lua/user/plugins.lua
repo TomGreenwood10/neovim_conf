@@ -46,6 +46,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   use "morhetz/gruvbox" -- colorscheme
+  use 'navarasu/onedark.nvim' --colorscheme
   use { "catppuccin/nvim", as = "catppuccon" } -- colorscheme
   use "cocopon/iceberg.vim" -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"

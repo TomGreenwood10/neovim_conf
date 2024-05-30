@@ -9,6 +9,5 @@ require "user.indent-blankline"
 require "user.treesitter"
 require "user.true-zen"
 
-vim.cmd "colorscheme catppuccin"
+vim.cmd "colorscheme onedark"
 vim.cmd "set nowrap"
--- vim.cmd "hi normal guibg=000000"
