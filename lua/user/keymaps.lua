@@ -18,7 +18,8 @@ keymap("n", "<F6>", ":NERDTreeToggle<CR>", opts)
 keymap("n", "t", ":ToggleTerm<CR>", opts)
 
 keymap("n", "<Leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<Leader>fg", ":Telescope grep_string<CR>", opts)
+keymap("n", "<Leader>fs", ":Telescope grep_string<CR>", opts)
+keymap("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
 
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
