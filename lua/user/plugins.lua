@@ -96,6 +96,7 @@ return packer.startup(function(use)
 
   use "startup-nvim/startup.nvim"
   use "sindrets/diffview.nvim"  -- git diffs
+  use "f-person/git-blame.nvim"
 
   use "tpope/vim-commentary"  -- commenting
   

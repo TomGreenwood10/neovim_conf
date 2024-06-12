@@ -8,6 +8,7 @@ require "user.startup"
 require "user.indent-blankline"
 require "user.treesitter"
 require "user.true-zen"
+require "user.git-blame"
 
 vim.cmd "colorscheme onedark"
 vim.cmd "set nowrap"
