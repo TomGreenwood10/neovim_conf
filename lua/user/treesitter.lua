@@ -4,8 +4,8 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = "all",
-  sync_install = false,
+  ensure_installed = {"python", "sql", "csv", "yaml", "json", "hcl", "lua", "markdown", "bash"},
+  sync_install = true,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,

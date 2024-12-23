@@ -62,10 +62,12 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   } -- syntax hilighting
 
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  }) -- Mardown html previewer
+  -- use({
+  --     "iamcco/markdown-preview.nvim",
+  --   run = function() vim.fn["mkdp#util#install"]() end,
+  -- }) -- Mardown html previewer
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
   use { "nvim-telescope/telescope.nvim", tag = '0.1.4' }
   use "preservim/nerdtree" -- File explorer
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
