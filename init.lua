@@ -9,7 +9,8 @@ require "user.indent-blankline"
 require "user.treesitter"
 require "user.true-zen"
 require "user.git-blame"
-require "user.copilot-chat"
+-- require "user.copilot-chat"
+
 vim.cmd "hi normal guibg=000000"
 
 -- vim.keymap.set('i', '<C-p>', 'copilot#Accept("\\<CR>")', {
