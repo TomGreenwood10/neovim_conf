@@ -7,11 +7,13 @@ require "user.telescope"
 require "user.startup"
 require "user.indent-blankline"
 require "user.treesitter"
-require "user.true-zen"
 require "user.git-blame"
+require "user.zen-mode"
 -- require "user.copilot-chat"
 
 vim.cmd "hi normal guibg=000000"
+vim.cmd "colorscheme onedark"
+vim.cmd "set nowrap"
 
 -- vim.keymap.set('i', '<C-p>', 'copilot#Accept("\\<CR>")', {
 --     expr = true,

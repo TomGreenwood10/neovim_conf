@@ -24,11 +24,7 @@ keymap("n", "<Leader>fg", ":Telescope live_grep<CR>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
-keymap("n", "<leader>zn", ":TZNarrow<CR>", opts)
-keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", opts)
-keymap("n", "<leader>zf", ":TZFocus<CR>", opts)
-keymap("n", "<leader>zm", ":TZMinimalist<CR>", opts)
-keymap("n", "<leader>za", ":TZAtaraxis<CR>", opts)
+keymap("n", "<Leader>zm", ":ZenMode<CR>", opts)
 
 -- keymap("n", "<leader>ccp", ":CopilotChat ", opts)
 -- keymap("v", "<leader>ccp", ":CopilotChat ", opts)

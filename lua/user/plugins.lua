@@ -50,7 +50,6 @@ return packer.startup(function(use)
   use { "catppuccin/nvim", as = "catppuccon" } -- colorscheme
   use "cocopon/iceberg.vim" -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"
-  use "tpope/vim-surround"
   use "tpope/vim-commentary"
 
   use {
@@ -63,7 +62,6 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
   } -- syntax hilighting
-  use "Pocco81/true-zen.nvim"
 
   -- use({
   --     "iamcco/markdown-preview.nvim",
@@ -79,7 +77,7 @@ return packer.startup(function(use)
     })
   end}
 
-  use "Pocco81/true-zen.nvim" -- zen modes
+  use "folke/zen-mode.nvim"
 
   -- cmp pluginsuse {
   use "hrsh7th/nvim-cmp" -- The completion plugin
