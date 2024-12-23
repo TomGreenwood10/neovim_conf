@@ -51,16 +51,19 @@ return packer.startup(function(use)
   use "cocopon/iceberg.vim" -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"
   use "tpope/vim-surround"
+  use "tpope/vim-commentary"
 
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
+  use "tpope/vim-surround"
 
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
   } -- syntax hilighting
+  use "Pocco81/true-zen.nvim"
 
   -- use({
   --     "iamcco/markdown-preview.nvim",
@@ -86,6 +89,13 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp" -- lsp completion
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
+  use 'maxmellon/vim-jsx-pretty' -- jsx support
+  use 'SirVer/ultisnips'
+  use 'mlaursen/vim-react-snippets'
+  use {'dsznajder/vscode-es7-javascript-react-snippets',
+    run = 'yarn install --frozen-lockfile && yarn compile'
+  }
+
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -100,7 +110,10 @@ return packer.startup(function(use)
   use "sindrets/diffview.nvim"  -- git diffs
   use "f-person/git-blame.nvim"
 
-  use "tpope/vim-commentary"  -- commenting
+
+  use "scalameta/nvim-metals"
+
+--   use "CopilotC-Nvim/CopilotChat.nvim"
   
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

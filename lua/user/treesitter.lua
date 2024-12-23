@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = {"python", "sql", "csv", "yaml", "json", "hcl", "lua", "markdown", "bash"},
+  ensure_installed = {"python", "go", "sql", "scala", "rust", "csv", "yaml", "json", "hcl", "lua", "markdown", "bash"},
   sync_install = true,
   highlight = {
     enable = true,

@@ -30,6 +30,8 @@ keymap("n", "<leader>zf", ":TZFocus<CR>", opts)
 keymap("n", "<leader>zm", ":TZMinimalist<CR>", opts)
 keymap("n", "<leader>za", ":TZAtaraxis<CR>", opts)
 
+-- keymap("n", "<leader>ccp", ":CopilotChat ", opts)
+-- keymap("v", "<leader>ccp", ":CopilotChat ", opts)
 
 -- TODO: below doesn't work
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
