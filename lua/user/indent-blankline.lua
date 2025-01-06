@@ -1,8 +1,8 @@
-require("ibl").setup{
-  enabled = false,
-  scope = {
-    enabled = true,
-    show_start = false,
-    show_end = false,
-  },
-}
+require("ibl").setup({
+    enabled = false,
+    scope = {
+	enabled = true,
+	show_start = false,
+	show_end = false,
+    },
+})

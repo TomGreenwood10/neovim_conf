@@ -104,7 +104,7 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- hooks up formates (e.g. black) to lsp
 
-  use "startup-nvim/startup.nvim"
+  use "startup-nvim/startup.nvim"  -- The startup screen
   use "sindrets/diffview.nvim"  -- git diffs
   use "f-person/git-blame.nvim"
 
