@@ -51,6 +51,7 @@ return packer.startup(function(use)
   use "cocopon/iceberg.vim" -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"
   use "tpope/vim-commentary"
+  use 'sphamba/smear-cursor.nvim'
 
   use {
     "windwp/nvim-autopairs",
@@ -88,7 +89,7 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
   use 'maxmellon/vim-jsx-pretty' -- jsx support
-  use 'SirVer/ultisnips'
+  -- use 'SirVer/ultisnips'
   use 'mlaursen/vim-react-snippets'
   use {'dsznajder/vscode-es7-javascript-react-snippets',
     run = 'yarn install --frozen-lockfile && yarn compile'
@@ -106,10 +107,19 @@ return packer.startup(function(use)
 
   use "startup-nvim/startup.nvim"  -- The startup screen
   use "sindrets/diffview.nvim"  -- git diffs
-  use "f-person/git-blame.nvim"
+  -- use "f-person/git-blame.nvim"
+  use "lewis6991/gitsigns.nvim"
+
+  use "rust-lang/rust.vim"
 
 
-  use "scalameta/nvim-metals"
+  -- use {
+  --   "scalameta/nvim-metals",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "mfussenegger/nvim-dap",
+  --   }
+  -- }
 
 --   use "CopilotC-Nvim/CopilotChat.nvim"
   

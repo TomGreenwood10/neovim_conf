@@ -26,6 +26,9 @@ keymap("v", ">", ">gv", opts)
 
 keymap("n", "<Leader>zm", ":ZenMode<CR>", opts)
 
+keymap("n", "<Leader>gh", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "<Leader>gb", ":Gitsigns toggle_current_line_blame<CR>", opts)
+
 -- keymap("n", "<leader>ccp", ":CopilotChat ", opts)
 -- keymap("v", "<leader>ccp", ":CopilotChat ", opts)
 

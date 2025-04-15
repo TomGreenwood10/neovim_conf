@@ -8,12 +8,42 @@ if not snip_status_ok then
   return
 end
 
+local lsp = require("lspconfig")
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
+
+local cmp_kinds = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "",
+    Value = "λ",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+}
 
 cmp.setup {
   snippet = {
@@ -47,10 +77,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, {
-      "i",
-      "s",
-    }),
+    end, { "i", "s", }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -65,9 +92,9 @@ cmp.setup {
     }),
   },
   formatting = {
-    fields = { "abbr", "menu" },
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      -- Kind icons
+    vim_item.kind = cmp_kinds[vim_item.kind] or ""
       vim_item.menu = ({
 	nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
@@ -88,7 +115,10 @@ cmp.setup {
     select = false,
   },
   window = {
-    documentation = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+    documentation = {
+	border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
   },
   experimental = {
     ghost_text = false,

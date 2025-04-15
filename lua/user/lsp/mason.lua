@@ -9,6 +9,7 @@ local servers = {
     "tailwindcss",
     "gopls",
     "ocamllsp",
+    "rust_analyzer",
 }
 
 local settings = {
@@ -53,11 +54,19 @@ for _, server in pairs(servers) do
     lspconfig[server].setup(opts)
 end
 
-require("mason-lspconfig").setup_handlers {
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
-  function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {}
-  end,
-}
+-- require("mason-lspconfig").setup_handlers {
+--   -- The first entry (without a key) will be the default handler
+--   -- and will be called for each installed server that doesn't have
+--   -- a dedicated handler.
+--   function (server_name) -- default handler (optional)
+--     require("lspconfig")[server_name].setup()
+--   end,
+-- }
+
+-- lspconfig.ocamllsp.setup({
+--     cmd = { "ocamllsp" },
+--     filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+--     root_dir = lspconfig.util.root_pattern("*.opam", "esy.json", "package.json", ".git", "dune-project", "dune-workspace"),
+--     on_attach = require("user.lsp.handlers").on_attach,
+--     capabilities = require("user.lsp.handlers").capabilities,
+-- })
