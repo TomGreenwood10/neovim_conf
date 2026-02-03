@@ -12,7 +12,7 @@ null_ls.setup({
     debug = false,
     sources = {
 	formatting.black,
-	diagnostics.flake8.with({ extra_args = { "--max-line-length", 100 } }),
+	-- diagnostics.flake8.with({ extra_args = { "--max-line-length", 100 } }),
 -- 	diagnostics.sqlfluff.with({ extra_args = { "--dialect", "mysql" } }),  -- gl doesn't show diagnostics so not suitable for now.
     },
 })

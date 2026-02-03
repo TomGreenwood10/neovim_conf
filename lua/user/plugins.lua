@@ -1,131 +1,224 @@
-local fn = vim.fn
+-- Setup lazy.nvim
+require("lazy").setup({
 
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
-end
+  -- Core Dependencies
+  { "nvim-lua/popup.nvim" },
+  { "nvim-lua/plenary.nvim" },
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+  -- Colorschemes
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+  { "morhetz/gruvbox", lazy = true },
+  { "catppuccin/nvim", name = "catppuccon", lazy = true },
+  { "cocopon/iceberg.vim", lazy = true },
 
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+  -- UI Enhancements
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    main = "ibl",
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    keys = { { "<Leader>zm", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+  },
+  {
+    "startup-nvim/startup.nvim",
+    event = "VimEnter",
+  },
 
--- Have packer use a popup window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+  -- Editing
+  {
+    "tpope/vim-commentary",
+    keys = { { "gc", mode = { "n", "v" } }, { "gcc", mode = "n" } },
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup {}
     end,
   },
-}
+  {
+    "tpope/vim-surround",
+    keys = { { "ys", mode = "n" }, { "ds", mode = "n" }, { "cs", mode = "n" }, { "S", mode = "v" } },
+  },
 
--- Install your plugins here
-return packer.startup(function(use)
+  -- Syntax & Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
+  },
 
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  -- Navigation & File Management
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.4",
+    cmd = "Telescope",
+    keys = {
+      { "<Leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<Leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+      { "<Leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep String" },
+    },
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+  },
+  {
+    "preservim/nerdtree",
+    cmd = "NERDTreeToggle",
+    keys = { { "<F6>", "<cmd>NERDTreeToggle<cr>", desc = "Toggle NERDTree" } },
+  },
 
-  use "morhetz/gruvbox" -- colorscheme
-  use 'navarasu/onedark.nvim' --colorscheme
-  use { "catppuccin/nvim", as = "catppuccon" } -- colorscheme
-  use "cocopon/iceberg.vim" -- colorscheme
-  use "lukas-reineke/indent-blankline.nvim"
-  use "tpope/vim-commentary"
-  use 'sphamba/smear-cursor.nvim'
+  -- Terminal
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    cmd = "ToggleTerm",
+    keys = { { "t", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", mode = "n" } },
+    config = function()
+      require("toggleterm").setup({
+        direction = "horizontal"
+      })
+    end,
+  },
 
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
-  use "tpope/vim-surround"
+  -- Completion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+    },
+  },
+  { "hrsh7th/cmp-buffer", lazy = true },
+  { "hrsh7th/cmp-path", lazy = true },
+  { "hrsh7th/cmp-cmdline", lazy = true },
+  { "hrsh7th/cmp-nvim-lsp", lazy = true },
+  { "saadparwaiz1/cmp_luasnip", lazy = true },
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate",
-  } -- syntax hilighting
-
-  -- use({
-  --     "iamcco/markdown-preview.nvim",
-  --   run = function() vim.fn["mkdp#util#install"]() end,
-  -- }) -- Mardown html previewer
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-
-  use { "nvim-telescope/telescope.nvim", tag = '0.1.4' }
-  use "preservim/nerdtree" -- File explorer
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup({
-      direction = "horizontal"
-    })
-  end}
-
-  use "folke/zen-mode.nvim"
-
-  -- cmp pluginsuse {
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "hrsh7th/cmp-nvim-lsp" -- lsp completion
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-
-  use 'maxmellon/vim-jsx-pretty' -- jsx support
-  -- use 'SirVer/ultisnips'
-  use 'mlaursen/vim-react-snippets'
-  use {'dsznajder/vscode-es7-javascript-react-snippets',
-    run = 'yarn install --frozen-lockfile && yarn compile'
-  }
-
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  -- Snippets
+  {
+    "L3MON4D3/LuaSnip",
+    event = "InsertEnter",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
+  { "rafamadriz/friendly-snippets", lazy = true },
+  {
+    "mlaursen/vim-react-snippets",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  },
+  {
+    "dsznajder/vscode-es7-javascript-react-snippets",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    build = "yarn install --frozen-lockfile && yarn compile",
+  },
 
   -- LSP
-  use "neovim/nvim-lspconfig"
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "jose-elias-alvarez/null-ls.nvim" -- hooks up formates (e.g. black) to lsp
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = true,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
-  use "startup-nvim/startup.nvim"  -- The startup screen
-  use "sindrets/diffview.nvim"  -- git diffs
-  -- use "f-person/git-blame.nvim"
-  use "lewis6991/gitsigns.nvim"
+  -- Git Integration
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      { "<Leader>gh", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview Hunk" },
+      { "<Leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Blame" },
+    },
+  },
 
-  use "rust-lang/rust.vim"
+  -- Language-Specific
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
+  {
+    "maxmellon/vim-jsx-pretty",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  },
 
+  -- AI Tools - Copilot
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    cmd = { "CopilotChat", "CopilotChatOpen" },
+    keys = {
+      { "<leader>ccp", "<cmd>CopilotChatOpen<cr>", desc = "Copilot Chat", mode = "n" },
+      { "<leader>ccp", "<cmd>CopilotChat<cr>", desc = "Copilot Chat", mode = "v" },
+    },
+    dependencies = {
+      { "github/copilot.vim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+  },
 
-  -- use {
-  --   "scalameta/nvim-metals",
-  --   requires = {
-  --     "nvim-lua/plenary.nvim",
-  --     "mfussenegger/nvim-dap",
-  --   }
-  -- }
-
---   use "CopilotC-Nvim/CopilotChat.nvim"
-  
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+}, {
+  ui = {
+    border = "rounded",
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})

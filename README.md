@@ -1,4 +1,9 @@
-# Nvim Config
+# Neovim Configuration
+
+**This directory contains a personal Neovim configuration written in Lua.**
+
+## About
+This is a complete Neovim configuration located at `~/.config/nvim/`. It uses Lua-based configuration for modern Neovim features and plugin management.
 
 ## Aim
 To have a lua based neovim config that I somewhat understand

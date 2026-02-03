@@ -8,8 +8,6 @@ if not snip_status_ok then
   return
 end
 
-local lsp = require("lspconfig")
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -130,6 +128,4 @@ cmp.setup {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- The following example advertise capabilities to `clangd`.
-require'lspconfig'.clangd.setup {
-  capabilities = capabilities,
-}
+vim.lsp.enable("clangd")
