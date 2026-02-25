@@ -25,6 +25,7 @@ require "user.zen-mode"
 require "user.smear-cursor"
 require "user.gitsigns"
 require "user.copilot-chat"
+require "user.conform"
 
 vim.cmd "hi normal guibg=000000"
 vim.cmd "colorscheme onedark"

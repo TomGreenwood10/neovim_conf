@@ -7,6 +7,8 @@ configs.setup {
     ensure_installed = {
 	"python",
 	"go",
+	"gomod",
+	"gowork",
 	"sql",
 	"scala",
 	"rust",
@@ -22,6 +24,6 @@ configs.setup {
     sync_install = true,
     highlight = {
 	enable = true,
-	additional_vim_regex_highlighting = true,
+	additional_vim_regex_highlighting = false,
     }
 }
